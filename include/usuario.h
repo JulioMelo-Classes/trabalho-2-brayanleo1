@@ -2,8 +2,13 @@
 #define USUARIO_H
 
 class Usuario{
+	private:
+		int id; //<! Um identificador único para o usuário
+		string nome; //<! O nome cadastrado pelo usuário
+		string email; //<! O email cadastrado pelo usuário
+		string senha; //<! A senha cadastrada pelo usuário
 	/*
-		TODO implementação dos atributos e métodos
+		TODO implementação de métodos
 	*/
 };
 

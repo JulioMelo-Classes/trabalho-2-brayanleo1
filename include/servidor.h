@@ -2,8 +2,15 @@
 #define SERVIDOR_H
 
 class Servidor{
+	private:
+		int usuarioDonoId;
+		string nome;
+		string descricao;
+		string codigoConvite;
+		vector<CanalTexto> canaisTexto;
+		vector<int> participantesIDs;
 	/*
-		TODO implementação dos atributos e métodos
+		TODO implementação de métodos
 	*/
 };
 
