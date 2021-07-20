@@ -1,13 +1,13 @@
 #ifndef USUARIO_H
 #define USUARIO_H
-#include <string>
+#include <iostream>
 
 class Usuario{
 	private:
 		int id; //<! Um identificador único para o usuário
-		string nome; //<! O nome cadastrado pelo usuário
-		string email; //<! O email cadastrado pelo usuário
-		string senha; //<! A senha cadastrada pelo usuário
+		std::string nome; //<! O nome cadastrado pelo usuário
+		std::string email; //<! O email cadastrado pelo usuário
+		std::string senha; //<! A senha cadastrada pelo usuário
 	public:
 
 		//*! Construtor de usuário que cria um usuário vazio
@@ -26,32 +26,32 @@ class Usuario{
 		/*! Coloca o nome do usuário
 				@param nome_ nome do usuário a ser criado
 		*/
-		void setNome(string nome_);
+		void setNome(std::string nome_);
 
 		/*! Recupera o nome do usuário
 				@return Uma string que representa o nome do usuário
 		*/
-		string getNome();
+		std::string getNome();
 
 		/*! Coloca o email do usuário
 				@param email_ endereço de email do usuário a ser criado
 		*/
-		void setEmail(string email_);
+		void setEmail(std::string email_);
 
 		/*! Recupera o email do usuário
 				@return Uma string que representa o email do usuário
 		*/
-		string getEmail();
+		std::string getEmail();
 
 		/*! Coloca a senha do usuário
 				@param senha_ senha do usuário a ser criado
 		*/
-		void setSenha(string senha_);
+		void setSenha(std::string senha_);
 
 		/*! Recupera a senha do usuário
 				@return Uma string que representa a senha do usuário
 		*/
-		string getSenha();
+		std::string getSenha();
 };
 
 #endif

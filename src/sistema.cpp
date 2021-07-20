@@ -45,7 +45,7 @@ string Sistema::login(const string email, const string senha) {
         nulidade.second = "\0";
         std::pair<int, std::pair<std::string, std::string>> logado;
         usuariosLogados.insert(logado);
-        return "Logado como"+u.getEmail();
+        return "Logado como "+u.getEmail();
       } else {
         return "Senha ou usuário inválidos!"; //Como só pode ter uma conta por email...
       }
