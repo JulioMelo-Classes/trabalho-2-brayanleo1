@@ -1,5 +1,7 @@
 #ifndef SERVIDOR_H
 #define SERVIDOR_H
+#include <string>
+#include <vector>
 
 class Servidor{
 	private:

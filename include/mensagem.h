@@ -1,5 +1,6 @@
 #ifndef MENSAGEM_H
 #define MENSAGEM_H
+#include <string>
 
 class Mensagem{
 	private:
