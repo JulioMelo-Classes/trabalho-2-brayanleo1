@@ -11,11 +11,49 @@ string Sistema::quit() {
 }
 
 string Sistema::create_user (const string email, const string senha, const string nome) {
-  return "create_user NÃO IMPLEMENTADO";
+  Usuario u;
+  u.setId(usuarios.size());
+  u.setEmail(email);
+  u.setSenha(senha);
+  u.setNome(nome);
+
+  //Já existe alguém assim?
+  for(auto it = usuarios.begin(); it != usuarios.end(); it++) {
+    if(u.getEmail() == it->getEmail()) {
+      return "Email já cadastrado!";
+    } else if(u.getNome() == it->getNome()) {
+      return "Nome de usuário já existe!";
+    }
+  }
+  
+  usuarios.push_back(u);
+  return "Usuário criado";
 }
 
 string Sistema::login(const string email, const string senha) {
-  return "login NÃO IMPLEMENTADO";
+  Usuario u;
+  u.setEmail(email);
+  u.setSenha(senha);
+
+  //Existe esse usuário com esse email e essa senha?
+  int id = 0;
+  for(auto it = usuarios.begin(); it != usuarios.end(); it++) {
+    if(u.getEmail() == it->getEmail()) {
+      if(u.getSenha() == it->getSenha()) {
+        std::pair<std::string, std::string> nulidade;
+        nulidade.first = "\0";
+        nulidade.second = "\0";
+        std::pair<int, std::pair<std::string, std::string>> logado;
+        usuariosLogados.insert(logado);
+        return "Logado como"+u.getEmail();
+      } else {
+        return "Senha ou usuário inválidos!"; //Como só pode ter uma conta por email...
+      }
+    }
+    id++; 
+  }
+
+  return "Senha ou usuário inválidos!";
 }
 
 string Sistema::disconnect(int id) {
