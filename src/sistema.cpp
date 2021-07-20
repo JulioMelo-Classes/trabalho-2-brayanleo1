@@ -35,15 +35,27 @@ string Sistema::login(const string email, const string senha) {
   u.setEmail(email);
   u.setSenha(senha);
 
+  //Esse usuário já está logado?
+  
+
   //Existe esse usuário com esse email e essa senha?
   int id = 0;
   for(auto it = usuarios.begin(); it != usuarios.end(); it++) {
     if(u.getEmail() == it->getEmail()) {
       if(u.getSenha() == it->getSenha()) {
+        //Usuário está logado?
+        for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++) {
+          if(it->first == id) {
+            return "Usuário "+ u.getEmail() + " já logado";
+          }
+        }
+
         std::pair<std::string, std::string> nulidade;
         nulidade.first = "\0";
         nulidade.second = "\0";
         std::pair<int, std::pair<std::string, std::string>> logado;
+        logado.first = id;
+        logado.second = nulidade;
         usuariosLogados.insert(logado);
         return "Logado como "+u.getEmail();
       } else {
@@ -57,7 +69,15 @@ string Sistema::login(const string email, const string senha) {
 }
 
 string Sistema::disconnect(int id) {
-  return "disconnect NÃO IMPLEMENTADO";
+  for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++) {
+    if(it->first == id) {
+      usuariosLogados.erase(it);
+      return "Desconectando usuário " + usuarios[id].getEmail();
+    }
+  }
+
+  //Implementando
+  return "Não está conectado";
 }
 
 string Sistema::create_server(int id, const string nome) {
