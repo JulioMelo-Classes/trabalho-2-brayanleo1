@@ -34,10 +34,7 @@ string Sistema::login(const string email, const string senha) {
   Usuario u;
   u.setEmail(email);
   u.setSenha(senha);
-
-  //Esse usuário já está logado?
   
-
   //Existe esse usuário com esse email e essa senha?
   int id = 0;
   for(auto it = usuarios.begin(); it != usuarios.end(); it++) {

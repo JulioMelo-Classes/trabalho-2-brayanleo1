@@ -2,7 +2,6 @@
 
 using namespace std;
 
-/* COMANDOS */
 Usuario::Usuario(){}
 
 void Usuario::setId(int id_){
