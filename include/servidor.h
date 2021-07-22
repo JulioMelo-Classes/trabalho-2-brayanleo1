@@ -13,9 +13,20 @@ class Servidor{
 		std::string codigoConvite;
 		std::vector<CanalTexto> canaisTexto;
 		std::vector<int> participantesIDs;
-	/*
-		TODO implementação de métodos
-	*/
+	public:
+		Servidor();
+
+		void setId(int id_);
+		int getId();
+
+		void setNome(std::string nome_);
+		std::string getNome();
+
+		void setDescricao(std::string descricao_);
+		std::string getDescricao();
+
+		void setCodigo(std::string codigo_);
+		std::string getCodigo();
 };
 
 #endif
