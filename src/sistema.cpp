@@ -80,6 +80,7 @@ string Sistema::create_server(int id, const string nome) {
   Servidor s;
   s.setId(id);
   s.setNome(nome);
+  s.setCodigo("");
 
   //Existe alguém logado?
   int x = usuariosLogados.size();
