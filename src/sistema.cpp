@@ -34,7 +34,7 @@ string Sistema::login(const string email, const string senha) {
   Usuario u;
   u.setEmail(email);
   u.setSenha(senha);
-  
+
   //Existe esse usuário com esse email e essa senha?
   int id = 0;
   for(auto it = usuarios.begin(); it != usuarios.end(); it++) {
@@ -48,8 +48,8 @@ string Sistema::login(const string email, const string senha) {
         }
 
         std::pair<std::string, std::string> nulidade;
-        nulidade.first = "\0";
-        nulidade.second = "\0";
+        nulidade.first = "";
+        nulidade.second = "";
         std::pair<int, std::pair<std::string, std::string>> logado;
         logado.first = id;
         logado.second = nulidade;
@@ -73,28 +73,200 @@ string Sistema::disconnect(int id) {
     }
   }
 
-  //Implementando
   return "Não está conectado";
 }
 
 string Sistema::create_server(int id, const string nome) {
-  return "create_server NÃO IMPLEMENTADO";
+  Servidor s;
+  s.setId(id);
+  s.setNome(nome);
+
+  //Existe alguém logado?
+  int x = usuariosLogados.size();
+
+  if(x > 0) {
+    //Usuário está logado?
+    bool logado = false;
+    for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++){
+      if(it->first == id){ //Tá logado
+      logado = true;
+        //Já existe servidor com esse nome?
+        for(auto it2 = servidores.begin(); it2 != servidores.end(); it2++){
+          if(it2->getNome() == nome) {
+            return "Servidor com esse nome já existe";
+          }
+        }
+
+      } 
+      auto itAux = it;
+      itAux++;
+      if(itAux == usuariosLogados.end() && logado == false){ //Não tá logado pois testou todos
+        return "Usuário não logado 2";
+      }
+    }
+  } else {
+    return "Usuário não logado";
+  }
+
+  servidores.push_back(s);
+  return "Servidor criado";
 }
 
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
-  return "set_server_desc NÃO IMPLEMENTADO";
+  //Existe alguém logado?
+  int x = usuariosLogados.size();
+
+  if(x > 0) {
+    //Usuário está logado?
+    bool logado = false;
+    for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++){
+      if(it->first == id){ //Tá logado
+        logado = true;
+        //Tem algum servidor com esse nome?
+        bool existe = false;
+        for(auto it2 = servidores.begin(); it2 != servidores.end(); it2++) {
+          if(it2->getNome() == nome){ //Nome existe
+            logado = true;
+            //Você é o dono desse servidor?
+            if(it2->getId() == id){
+              it2->setDescricao(descricao);
+              return "Descrição do servidor " + nome + " modificada!";
+            }
+          }
+          auto it2Aux = it2;
+          it2Aux++;
+          if(it2Aux == servidores.end() && existe == false) {
+            return "Servidor " + nome + " não existe";
+          }
+        }
+
+      }
+      auto itAux = it;
+      itAux++;
+      if(itAux == usuariosLogados.end() && logado == false){ //Não tá logado pois testou todos
+        return "Usuário não logado 2";
+      }
+    }
+  } else {
+    return "Usuário não logado";
+  }
+
+  return "Você não pode alterar a descrição de um servidor que não foi criado por você";
 }
 
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
-  return "set_server_invite_code NÃO IMPLEMENTADO";
+  //Existe alguém logado?
+  int x = usuariosLogados.size();
+
+  if(x > 0) {
+    //Usuário está logado?
+    bool logado = false;
+    for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++){
+      if(it->first == id){ //Tá logado
+      logado = true;
+        //Tem algum servidor com esse nome?
+        bool existe = false;
+        for(auto it2 = servidores.begin(); it2 != servidores.end(); it2++) {
+          if(it2->getNome() == nome){ //Nome existe
+            existe = true;
+            //Você é o dono desse servidor?
+            if(it2->getId() == id){
+              it2->setCodigo(codigo);
+              if(codigo == "") {
+                return "Código de convite do servidor " + nome + " removido!";
+              } else {
+                return "Código de convite do servidor " + nome + " modificado!";
+              }
+              
+            }
+          }
+          auto it2Aux = it2;
+          it2Aux++;
+          if(it2Aux == servidores.end() && existe == false) {
+            return "Servidor " + nome + " não existe";
+          }
+        }
+
+      } 
+      auto itAux = it;
+      itAux++;
+      if(itAux == usuariosLogados.end() && logado == false){ //Não tá logado pois testou todos
+        return "Usuário não logado";
+      }
+    }
+  } else {
+    return "Usuário não logado";
+  }
+
+  return "Você não pode alterar o código de um servidor que não foi criado por você";
 }
 
 string Sistema::list_servers(int id) {
-  return "list_servers NÃO IMPLEMENTADO";
+  //Esse usuário está logado?
+  for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++) {
+    if(it->first == id) {
+      string listaServers;
+      if(servidores.size() == 0) {
+        return "Não existem servidores criados no momento";
+      }
+      for(auto it2 = servidores.begin(); it2 != servidores.end(); it2++) {
+        listaServers.append(it2->getNome());
+        listaServers.append("\n");
+      }
+      return listaServers;
+    }
+  }
+
+  return "Usuário não logado";
 }
 
 string Sistema::remove_server(int id, const string nome) {
-  return "remove_server NÃO IMPLEMENTADO";
+  //Existe alguém logado?
+  int x = usuariosLogados.size();
+
+  if(x > 0) {
+    //Usuário está logado?
+    bool logado = false;
+    for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++){
+      if(it->first == id){ //Tá logado
+      logado = true;
+        //Tem algum servidor com esse nome?
+        bool existe = false;
+        for(auto it2 = servidores.begin(); it2 != servidores.end(); it2++) {
+          if(it2->getNome() == nome){ //Nome existe
+          existe = true;
+            //Você é o dono desse servidor?
+            if(it2->getId() == id){
+              servidores.erase(it2);
+              //Desassocando users nesse servidor
+              for(auto it3 = usuariosLogados.begin(); it3 != usuariosLogados.end(); it3++) {
+                if(it3->second.first == nome) {
+                  it3->second.first = "";
+                  it3->second.second = "";
+                }
+              }
+              return "Servidor " + nome + " removido";
+            }
+          }
+          auto it2Aux = it2;
+          it2Aux++;
+          if(it2Aux == servidores.end() && existe == false) {
+            return "Servidor " + nome + " não encontrado";
+          }
+        }
+
+      }
+      auto itAux = it;
+      itAux++;
+      if(itAux == usuariosLogados.end() && logado == false){ //Não tá logado pois testou todos
+        return "Usuário não logado";
+      }
+    }
+  } else {
+    return "Usuário não logado";
+  }
+
+  return "Você não é o dono do servidor " + nome;
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
