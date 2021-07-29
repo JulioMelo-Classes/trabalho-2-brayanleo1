@@ -4,7 +4,11 @@
 #include <vector>
 
 #include "canaltexto.h"
-
+/*
+CP1 classe servidor ok
+Ao invés de usar construtores vazios com set, vc poderia usar um construtor com parâmetros
+e remover o set, assim a classe ficava mais enxuta
+*/
 class Servidor{
 	private:
 		int usuarioDonoId;

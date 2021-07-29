@@ -9,7 +9,9 @@ using namespace std;
 string Sistema::quit() {
   return "Saindo...";
 }
-
+/*
+A1.2 ok
+*/
 string Sistema::create_user (const string email, const string senha, const string nome) {
   Usuario u;
   u.setId(usuarios.size());
@@ -30,6 +32,9 @@ string Sistema::create_user (const string email, const string senha, const strin
   return "Usuário criado";
 }
 
+/*
+A1.3 ok
+*/
 string Sistema::login(const string email, const string senha) {
   Usuario u;
   u.setEmail(email);
@@ -65,6 +70,9 @@ string Sistema::login(const string email, const string senha) {
   return "Senha ou usuário inválidos!";
 }
 
+/*
+A2.1 ok
+*/
 string Sistema::disconnect(int id) {
   for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++) {
     if(it->first == id) {
@@ -76,6 +84,9 @@ string Sistema::disconnect(int id) {
   return "Não está conectado";
 }
 
+/*
+A2.2 ok
+*/
 string Sistema::create_server(int id, const string nome) {
   Servidor s;
   s.setId(id);
@@ -112,7 +123,9 @@ string Sistema::create_server(int id, const string nome) {
   servidores.push_back(s);
   return "Servidor criado";
 }
-
+/*
+A2.3 ok
+*/
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
   //Existe alguém logado?
   int x = usuariosLogados.size();
@@ -155,6 +168,9 @@ string Sistema::set_server_desc(int id, const string nome, const string descrica
   return "Você não pode alterar a descrição de um servidor que não foi criado por você";
 }
 
+/*
+A2.4 ok
+*/
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
   //Existe alguém logado?
   int x = usuariosLogados.size();
@@ -202,6 +218,9 @@ string Sistema::set_server_invite_code(int id, const string nome, const string c
   return "Você não pode alterar o código de um servidor que não foi criado por você";
 }
 
+/*
+A2.5 ok
+*/
 string Sistema::list_servers(int id) {
   //Esse usuário está logado?
   for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++) {
@@ -221,6 +240,9 @@ string Sistema::list_servers(int id) {
   return "Usuário não logado";
 }
 
+/*
+A2.6 ok
+*/
 string Sistema::remove_server(int id, const string nome) {
   //Existe alguém logado?
   int x = usuariosLogados.size();

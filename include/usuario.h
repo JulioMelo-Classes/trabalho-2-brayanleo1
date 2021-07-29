@@ -2,6 +2,11 @@
 #define USUARIO_H
 #include <iostream>
 
+/*
+CP1 classe usuário ok
+Ao invés de usar construtores vazios com set, vc poderia usar um construtor com parâmetros
+e remover o set, assim a classe ficava mais enxuta
+*/
 class Usuario{
 	private:
 		int id; //<! Um identificador único para o usuário
