@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <utility>
+#include <iterator>
 
 #include "usuario.h"
 #include "servidor.h"
@@ -34,6 +36,12 @@ class Sistema {
 		*/
 		std::string create_user (const std::string email, const std::string senha, const std::string nome);
 
+		/*! Verifica se o usuário de tal id está logado e retorna um pair contendo um boolean e um iterator
+				@param id o id do usuário a ser verificado
+				@return um pair contendo no primeiro um boolean que é true caso o usuário esteja logado ou false caso contrário e no segundo elemento sendo um iterator apontando para a posição do usuário em usuáriosLogados caso ele esteja logado ou um iterator vazio caso contrário
+		*/
+		std::pair<bool, std::map< int, std::pair<std::string, std::string> >::iterator> is_user_logged (int id);
+
 		/*! Realiza o login do usuário com email e senha, retorna uma string de erro ou uma mensagem 
 				login bem sucedido. Quando um usuário loga o sistema deve adicionar o usuário na tabela 
 				Sistema::usuariosLogados.
@@ -50,6 +58,12 @@ class Sistema {
 				@return "Usuário <email> desconectado!" ou uma mensagem de erro em caso de falha.
 		*/
 		std::string disconnect(int id);
+
+		/*! Verifica se o servidor de tal nome existe e um pair de boolean e iterator
+				@param nome o nome do servidor a ser verificado
+				@return um pair contendo no primeiro um boolean que é true caso o servidor exista ou false caso contrário e no segundo elemento sendo um iterator apontando para a posição do servidor em servidores caso ele exista ou um iterator vazio caso contrário
+		*/
+		std::pair<bool, std::vector<Servidor>::iterator> this_server_exists (std::string nome);
 
 		/*! Cria um novo servidor no sistema e o adiciona na lista de servidores. A função deve retornar
 				uma string "Servidor <nome> criado" ou uma mensagem de erro caso o servidor não possa ser 
