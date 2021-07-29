@@ -35,3 +35,39 @@ void Servidor::setCodigo(string codigo_){
 string Servidor::getCodigo(){
     return codigoConvite;
 }
+
+void Servidor::addUser(int id_){
+    participantesIDs.push_back(id_);
+}
+
+bool Servidor::findUser(int id_){
+    bool existe = false;
+    for(auto it = participantesIDs.begin(); it != participantesIDs.end(); it++){
+        if(*it == id_) {
+            existe = true;
+        }
+    }
+    return existe;
+}
+
+void Servidor::removeUser(int id_) {
+    for(auto it = participantesIDs.begin(); it != participantesIDs.end(); it++){
+        if(*it == id_) {
+            participantesIDs.erase(it);
+            break;
+        }
+    }
+}
+
+string Servidor::printUsers(vector<Usuario> usuarios_){
+    string usuarios;
+    for(auto it = participantesIDs.begin(); it != participantesIDs.end(); it++) {
+        for(auto it2 = usuarios_.begin(); it2 != usuarios_.end(); it2++) {
+            if(*it == it2->getId()){
+                usuarios.append(it2->getNome());
+                usuarios.append("\n");
+            }
+        }
+    }
+    return usuarios;
+}

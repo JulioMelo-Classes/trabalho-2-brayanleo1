@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "canaltexto.h"
+#include "usuario.h"
 
 class Servidor{
 	private:
@@ -57,6 +58,28 @@ class Servidor{
 				@return Uma string que representa o código do servidor
 		*/
 		std::string getCodigo();
+
+		/*! Adiciona usuário ao servidor
+				@param id_ id do usuário a ser adicionado
+		*/
+		void addUser(int id_);
+
+		/*! Busca usuário no servidor
+				@param id_ id do usuário a ser procurado
+				@return booleano que manda true caso o usuário está no servidor e false caso contrário
+		*/
+		bool findUser(int id_);
+
+		/*! Remove usuário no servidor
+				@param id_ id do usuário a ser removido
+		*/
+		void removeUser(int id_);
+
+		/*! Imprime todos os usuários do servidor
+			@param usuarios_ Vetor com todos os usuários existentes
+			@return uma string contendo todos os usuários logados
+		*/
+		std::string printUsers(std::vector<Usuario> usuarios_);
 };
 
 #endif
