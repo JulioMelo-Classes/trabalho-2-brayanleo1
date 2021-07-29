@@ -101,6 +101,8 @@ std::pair<bool, std::vector<Servidor>::iterator> Sistema::this_server_exists(str
       it--; //Para finalizar o for
     }
   }
+
+  return par;
 }
 
 string Sistema::create_server(int id, const string nome) {
@@ -315,7 +317,7 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
         user.second->second = status; //Atualiza as informações
       }
 
-      return;
+      return "";
     }
     
   } else {
