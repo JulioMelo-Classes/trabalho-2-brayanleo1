@@ -402,7 +402,28 @@ string Sistema::list_participants(int id) {
 }
 
 string Sistema::list_channels(int id) {
-  return "list_channels NÃO IMPLEMENTADO";
+  //Existe alguém logado?
+  int x = usuariosLogados.size();
+
+  if(x > 0) {
+    //Usuário está logado?
+    auto user = is_user_logged(id);
+    if(user.first == false) {//Não tá logado
+      return "Usuário não logado";
+    }
+
+    //Existe tal servidor?
+    string nome = user.second->second.first;
+    auto server = this_server_exists(nome);
+    if(server.first){//Servidor existe
+      return server.second->printChannels();
+    }
+
+  } else {
+    return "Usuário não logado";
+  }
+
+  return "Usuário não está visualizando nenhum servidor";
 }
 
 string Sistema::create_channel(int id, const string nome) {
