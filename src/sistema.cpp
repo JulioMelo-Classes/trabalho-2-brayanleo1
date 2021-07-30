@@ -427,7 +427,39 @@ string Sistema::list_channels(int id) {
 }
 
 string Sistema::create_channel(int id, const string nome) {
-  return "create_channel NÃO IMPLEMENTADO";
+  //Existe alguém logado?
+  int x = usuariosLogados.size();
+
+  if(x > 0) {
+    //Usuário está logado?
+    auto user = is_user_logged(id);
+    if(user.first == false) {//Não tá logado
+      return "Usuário não logado";
+    }
+
+    //Existe tal servidor?
+    string nomeServidor = user.second->second.first;
+    auto server = this_server_exists(nomeServidor);
+    if(server.first == false){//Servidor não existe
+      return "Usuário não está visualizando nenhum servidor";
+    }
+
+    //Você é dono desse servidor?
+    if(server.second->getId() != id) {//Não é dono
+      return "Você não é o dono do servidor " + nomeServidor;
+    }
+
+    //Já existe canal com esse nome?
+    if(server.second->findChannel(nome) == false) {//Não existe
+      server.second->addChannel(nome);//Adiciona o canal pois tudo está nos conformes
+      return "Canal de texto " + nome + " criado";
+    }
+
+  } else {
+    return "Usuário não logado";
+  }
+
+  return "Canal de texto " + nome + " já existe!";
 }
 
 string Sistema::enter_channel(int id, const string nome) {
