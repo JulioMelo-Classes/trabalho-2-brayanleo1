@@ -482,8 +482,8 @@ string Sistema::enter_channel(int id, const string nome) {
 
     //Existe canal com esse nome?
     if(server.second->findChannel(nome)) {//Existe
-      server.second->addChannel(nome);//Adiciona o canal pois tudo está nos conformes
-      return "Canal de texto " + nome + " criado";
+      user.second->second.second = nome; //Atualiza a tabela de canal visualizado
+      return "Entrou no canal " + nome;
     }
 
   } else {
@@ -494,7 +494,34 @@ string Sistema::enter_channel(int id, const string nome) {
 }
 
 string Sistema::leave_channel(int id) {
-  return "leave_channel NÃO IMPLEMENTADO";
+  //Existe alguém logado?
+  int x = usuariosLogados.size();
+
+  if(x > 0) {
+    //Usuário está logado?
+    auto user = is_user_logged(id);
+    if(user.first == false) {//Não tá logado
+      return "Usuário não logado";
+    }
+
+    //Existe tal servidor?
+    string nomeServidor = user.second->second.first;
+    auto server = this_server_exists(nomeServidor);
+    if(server.first == false){//Servidor não existe
+      return "Usuário não está visualizando nenhum servidor";
+    }
+
+    //Usuário está visualizando algum canal
+    if(user.second->second.second != "") {//Está visualizando um canal
+      user.second->second.second = "";
+      return "Saindo do canal";
+    }
+
+  } else {
+    return "Usuário não logado";
+  }
+
+  return "Usuário não está visualizando nenhum canal";
 }
 
 string Sistema::send_message(int id, const string mensagem) {
