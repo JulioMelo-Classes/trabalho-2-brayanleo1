@@ -85,6 +85,17 @@ class Servidor{
 			@return uma string contendo todos os canais de texto no servidor
 		*/
 		std::string printChannels();
+
+		/*! Busca canal de texto no servidor
+				@param nome_ nome do canal de texto a ser procurado
+				@return booleano que manda true caso o canal de texto já existe no servidor e false caso contrário
+		*/
+		bool findChannel(std::string nome_);
+
+		/*! Adiciona canal de texto no servidor
+				@param nome_ nome do canal de texto a ser adicionado
+		*/
+		void addChannel(std::string nome_);
 };
 
 #endif

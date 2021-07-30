@@ -81,3 +81,19 @@ string Servidor::printChannels(){
     }
     return channels;
 }
+
+bool Servidor::findChannel(string nome_){
+    bool existe = false;
+    for(auto it = canaisTexto.begin(); it != canaisTexto.end(); it++){
+        if(it->getNome() == nome_) {
+            existe = true;
+        }
+    }
+    return existe;
+}
+
+void Servidor::addChannel(string nome_){
+    CanalTexto canal;
+    canal.setNome(nome_);
+    canaisTexto.push_back(canal);
+}
