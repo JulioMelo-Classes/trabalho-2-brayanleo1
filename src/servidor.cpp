@@ -71,3 +71,13 @@ string Servidor::printUsers(vector<Usuario> usuarios_){
     }
     return usuarios;
 }
+
+string Servidor::printChannels(){
+    string channels;
+    channels.append("#canais de texto \n");
+    for(auto it = canaisTexto.begin(); it != canaisTexto.end(); it++) {
+        channels.append(it->getNome());
+        channels.append("\n");
+    }
+    return channels;
+}

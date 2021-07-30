@@ -8,12 +8,12 @@
 
 class Servidor{
 	private:
-		int usuarioDonoId;
-		std::string nome;
-		std::string descricao;
-		std::string codigoConvite;
-		std::vector<CanalTexto> canaisTexto;
-		std::vector<int> participantesIDs;
+		int usuarioDonoId; //<! Id do usuário que criou o servidor
+		std::string nome; //<! Nome do servidor
+		std::string descricao; //<! Descrição do servidor
+		std::string codigoConvite; //<! O código de convite do servidor, se houver.
+		std::vector<CanalTexto> canaisTexto; //<! Um vetor contendo todos os canais de texto deste servidor
+		std::vector<int> participantesIDs; //<! Um vetor contendo os ids de todos os participantes deste servidor.
 	public:
 
 		//*! Construtor de servidor que cria um servidor vazio
@@ -80,6 +80,11 @@ class Servidor{
 			@return uma string contendo todos os usuários logados
 		*/
 		std::string printUsers(std::vector<Usuario> usuarios_);
+
+		/*! Imprime todos os canais de texto do servidor
+			@return uma string contendo todos os canais de texto no servidor
+		*/
+		std::string printChannels();
 };
 
 #endif
