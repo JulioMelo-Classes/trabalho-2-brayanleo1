@@ -101,3 +101,13 @@ void Servidor::addChannel(string nome_){
     canal.setNome(nome_);
     canaisTexto.push_back(canal);
 }
+
+vector<CanalTexto>::iterator Servidor::getThatChannel(string nome_){
+    auto channel = canaisTexto.begin();
+    for(auto it = canaisTexto.begin(); it != canaisTexto.end(); it++){
+        if(it->getNome() == nome_) {
+            channel = it;
+        }
+    }
+    return channel;
+}

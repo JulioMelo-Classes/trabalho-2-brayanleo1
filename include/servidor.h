@@ -96,6 +96,12 @@ class Servidor{
 				@param nome_ nome do canal de texto a ser adicionado
 		*/
 		void addChannel(std::string nome_);
+
+		/*! Retorna iterator de canal de texto no servidor
+				@param nome_ nome do canal de texto a ser procurado
+				@return Iterator apontando para o canal de texto de tal nome no servidor
+		*/
+		std::vector<CanalTexto>::iterator getThatChannel(std::string nome_);
 };
 
 #endif
