@@ -111,3 +111,28 @@ vector<CanalTexto>::iterator Servidor::getThatChannel(string nome_){
     }
     return channel;
 }
+
+string Servidor::printMsgsFromChannel(string nome_, vector<Usuario> usuarios_){
+    string msgs;
+    auto channelIt = getThatChannel(nome_);
+    auto pos = channelIt->getMsgIts();
+    for(auto it = pos.first; it != pos.second; it++){
+        auto id = it->getEnv();
+        string n;
+        for(auto it2 = usuarios_.begin(); it2 != usuarios_.end(); it2++){
+            if(id == it2->getId()){
+                n.append(it2->getNome());
+                it2 = usuarios_.end();
+                it2--;
+            }
+        }
+        msgs.append(n);
+        msgs.append(it->printMsg());
+        auto itAux = it;
+        itAux++;
+        if(itAux != pos.second) {
+            msgs.append("\n");
+        }
+    }
+    return msgs;
+}

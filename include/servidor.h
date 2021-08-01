@@ -2,6 +2,7 @@
 #define SERVIDOR_H
 #include <iostream>
 #include <vector>
+#include <iterator>
 
 #include "canaltexto.h"
 #include "usuario.h"
@@ -98,10 +99,17 @@ class Servidor{
 		void addChannel(std::string nome_);
 
 		/*! Retorna iterator de canal de texto no servidor
-				@param nome_ nome do canal de texto a ser procurado
+				@param nome_ String do nome do canal de texto a ser procurado
 				@return Iterator apontando para o canal de texto de tal nome no servidor
 		*/
 		std::vector<CanalTexto>::iterator getThatChannel(std::string nome_);
+
+		/*! Imprime todas as mensagens do canal escolhido daquele servidor
+				@param nome_ String do nome do canal de texto a ter as mensagens impressas
+				@param usuarios_ Vetor com todos os usuários existentes
+				@return Uma string com todas as mensagens organizada de forma 
+		*/
+		std::string printMsgsFromChannel(std::string nome_, std::vector<Usuario> usuarios_);
 };
 
 #endif
