@@ -65,7 +65,11 @@ string Servidor::printUsers(vector<Usuario> usuarios_){
         for(auto it2 = usuarios_.begin(); it2 != usuarios_.end(); it2++) {
             if(*it == it2->getId()){
                 usuarios.append(it2->getNome());
-                usuarios.append("\n");
+                auto itAux = it;
+                itAux++;
+                if(itAux != participantesIDs.end()){
+                    usuarios.append("\n");
+                }
             }
         }
     }

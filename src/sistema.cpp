@@ -111,24 +111,16 @@ string Sistema::create_server(int id, const string nome) {
   s.setNome(nome);
   s.setCodigo("");
 
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false){//Não tá logado
-      return "Usuário não logado";
-    }
-    
-    //Já existe servidor com esse nome?
-    auto server = this_server_exists(nome);
-    if(server.first) {//Existe servidor
-      return "Servidor com esse nome já existe";
-    }
-
-  } else {
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false){//Não tá logado
     return "Usuário não logado";
+  }
+    
+  //Já existe servidor com esse nome?
+  auto server = this_server_exists(nome);
+  if(server.first) {//Existe servidor
+    return "Servidor com esse nome já existe";
   }
 
   servidores.push_back(s);
@@ -136,65 +128,51 @@ string Sistema::create_server(int id, const string nome) {
 }
 
 string Sistema::set_server_desc(int id, const string nome, const string descricao) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
+  
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
       return "Usuário não logado";
-    }
+  }
 
-    //Tem algum servidor com esse nome?
-    auto server = this_server_exists(nome);
-    if(server.first == false){//Servidor não existe
-      return "Servidor com esse nome não existente";
-    }
+  //Tem algum servidor com esse nome?
+  auto server = this_server_exists(nome);
+  if(server.first == false){//Servidor não existe
+    return "Servidor com esse nome não existente";
+  }
     
-    //Você é o dono desse servidor?
-    if(server.second->getId() == id){
-      server.second->setDescricao(descricao);
-      return "Descrição do servidor " + nome + " modificada!";
-    }
-
-  } else {
-    return "Usuário não logado";
+  //Você é o dono desse servidor?
+  if(server.second->getId() == id){
+    server.second->setDescricao(descricao);
+    return "Descrição do servidor " + nome + " modificada!";
   }
 
   return "Você não pode alterar a descrição de um servidor que não foi criado por você";
 }
 
 string Sistema::set_server_invite_code(int id, const string nome, const string codigo) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Tem algum servidor com esse nome?
-    auto server = this_server_exists(nome);
-    if(server.first == false){//Servidor não existe
-      return "Servidor " + nome + " não encontrado";
-    }
-
-    //Você é o dono desse servidor?
-    if(server.second->getId() == id){//É dono do servidor
-      server.second->setCodigo(codigo);
-      //Código está vazio?
-      if(codigo == "") {//Código vazio
-        return "Código de convite do servidor " + nome + " removido!";
-      } else {//Código não vazio
-        return "Código de convite do servidor " + nome + " modificado!";
-      }
-    }
-
-  } else {
+  
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
+  }
+
+  //Tem algum servidor com esse nome?
+  auto server = this_server_exists(nome);
+  if(server.first == false){//Servidor não existe
+    return "Servidor " + nome + " não encontrado";
+  }
+
+  //Você é o dono desse servidor?
+  if(server.second->getId() == id){//É dono do servidor
+    server.second->setCodigo(codigo);
+    //Código está vazio?
+    if(codigo == "") {//Código vazio
+      return "Código de convite do servidor " + nome + " removido!";
+    } else {//Código não vazio
+      return "Código de convite do servidor " + nome + " modificado!";
+    }
   }
 
   return "Você não pode alterar o código de um servidor que não foi criado por você";
@@ -221,47 +199,37 @@ string Sistema::list_servers(int id) {
 }
 
 string Sistema::remove_server(int id, const string nome) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Tem algum servidor com esse nome?
-    auto server = this_server_exists(nome);
-    if(server.first == false){//Servidor não existe
-      return "Servidor " + nome + " não encontrado";
-    }
-    
-    //Você é o dono desse servidor?
-    if(server.second->getId() == id) {//É dono do servidor
-      servidores.erase(server.second);
-      //Desassociando users nesse servidor
-      for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++) {
-        if(it->second.first == nome) {
-          it->second.first = "";
-          it->second.second = "";
-        }
-      }
-      return "Servidor " + nome + " removido";
-    }
-
-  } else {
+  
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
+  }
+
+  //Tem algum servidor com esse nome?
+  auto server = this_server_exists(nome);
+  if(server.first == false){//Servidor não existe
+    return "Servidor " + nome + " não encontrado";
+  }
+    
+  //Você é o dono desse servidor?
+  if(server.second->getId() == id) {//É dono do servidor
+    servidores.erase(server.second);
+    //Desassociando users nesse servidor
+    for(auto it = usuariosLogados.begin(); it != usuariosLogados.end(); it++) {
+      if(it->second.first == nome) {
+        it->second.first = "";
+        it->second.second = "";
+      }
+    }
+    return "Servidor " + nome + " removido";
   }
 
   return "Você não é o dono do servidor " + nome;
 }
 
 string Sistema::enter_server(int id, const string nome, const string codigo) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
+  
   //Usuário está logado?
   auto user = is_user_logged(id);
   if(user.first == false) {//Não tá logado
@@ -311,214 +279,171 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
     } else{//Está dentro
       //Está visualizando aquele servidor?
       pair<string,string> status;
-      if(user.second->second.first != nome){//Não
+      if(user.second->second.first != nome){//Não está
         status.first = nome; //Associa a visualização do usuário aquele server
         status.second = ""; //Coloca o usuário para não ver nenhum canal
         user.second->second = status; //Atualiza as informações
+        return "Agora você está visualizando o servidor " + nome;
+      } else {//Está
+        return "Você já está visualizando o servidor " + nome + "!";
       }
 
-      return "";
+      //Se desse para não retornar nada sem quebrar as coisas
     }
-    
-  } else {
-    return "Usuário não logado";
-  }
 
   return "Código de convite inválido";
 }
 
 string Sistema::leave_server(int id, const string nome) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
 
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Usuário pertence a algum servidor?
-    bool pertence = false;
-    for(auto itAux = servidores.begin(); itAux != servidores.end(); itAux++){
-      if(itAux->findUser(user.second->first) == true){
-        pertence = true;
-      }
-    }
-
-    if(pertence == false) {//Não pertence
-      return "Você não está em qualquer servidor";
-    }
-
-    //Tem algum servidor com esse nome?
-    auto server = this_server_exists(nome);
-    if(server.first == false){//Servidor não existe
-      return "Servidor " + nome + " não encontrado";
-    }
-
-    //O usuário está logado nesse servidor?
-    if(server.second->findUser(user.second->first) == false) {//Está logado
-      return "Você não está logado no servidor " + nome;
-    }
-
-    //Está visualizando esse servidor?
-    if(user.second->second.first == nome){
-      user.second->second.first = "";
-      user.second->second.second = "";
-    }
-    server.second->removeUser(user.second->first);
-    return "Saindo do servidor " + nome;
-              
-  } else {
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
   }
+
+  //Usuário pertence a algum servidor?
+  bool pertence = false;
+  for(auto itAux = servidores.begin(); itAux != servidores.end(); itAux++){
+    if(itAux->findUser(user.second->first) == true){
+      pertence = true;
+    }
+  }
+
+  if(pertence == false) {//Não pertence
+    return "Você não está em qualquer servidor";
+  }
+
+  //Tem algum servidor com esse nome?
+  auto server = this_server_exists(nome);
+  if(server.first == false){//Servidor não existe
+    return "Servidor " + nome + " não encontrado";
+  }
+
+  //O usuário está logado nesse servidor?
+  if(server.second->findUser(user.second->first) == false) {//Está logado
+    return "Você não está logado no servidor " + nome;
+  }
+
+  //Está visualizando esse servidor?
+  if(user.second->second.first == nome){
+    user.second->second.first = "";
+    user.second->second.second = "";
+  }
+  server.second->removeUser(user.second->first);
+  return "Saindo do servidor " + nome;
 
   return "Você não está em qualquer servidor";
 }
 
 string Sistema::list_participants(int id) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
 
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Existe tal servidor?
-    string nome = user.second->second.first;
-    auto server = this_server_exists(nome);
-    if(server.first){//Servidor existe
-      return server.second->printUsers(usuarios);
-    }
-
-  } else {
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
+  }
+
+  //Existe tal servidor?
+  string nome = user.second->second.first;
+  auto server = this_server_exists(nome);
+  if(server.first){//Servidor existe
+    return server.second->printUsers(usuarios);
   }
 
   return "Usuário não está visualizando nenhum servidor";
 }
 
 string Sistema::list_channels(int id) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Existe tal servidor?
-    string nome = user.second->second.first;
-    auto server = this_server_exists(nome);
-    if(server.first){//Servidor existe
-      return server.second->printChannels();
-    }
-
-  } else {
+  
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
+  }
+
+  //Existe tal servidor?
+  string nome = user.second->second.first;
+  auto server = this_server_exists(nome);
+  if(server.first){//Servidor existe
+    return server.second->printChannels();
   }
 
   return "Usuário não está visualizando nenhum servidor";
 }
 
 string Sistema::create_channel(int id, const string nome) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Existe tal servidor?
-    string nomeServidor = user.second->second.first;
-    auto server = this_server_exists(nomeServidor);
-    if(server.first == false){//Servidor não existe
-      return "Usuário não está visualizando nenhum servidor";
-    }
-
-    //Você é dono desse servidor?
-    if(server.second->getId() != id) {//Não é dono
-      return "Você não é o dono do servidor " + nomeServidor;
-    }
-
-    //Já existe canal com esse nome?
-    if(server.second->findChannel(nome) == false) {//Não existe
-      server.second->addChannel(nome);//Adiciona o canal pois tudo está nos conformes
-      return "Canal de texto " + nome + " criado";
-    }
-
-  } else {
+  
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
+  }
+
+  //Existe tal servidor?
+  string nomeServidor = user.second->second.first;
+  auto server = this_server_exists(nomeServidor);
+  if(server.first == false){//Servidor não existe
+    return "Usuário não está visualizando nenhum servidor";
+  }
+
+  //Você é dono desse servidor?
+  if(server.second->getId() != id) {//Não é dono
+    return "Você não é o dono do servidor " + nomeServidor;
+  }
+
+  //Já existe canal com esse nome?
+  if(server.second->findChannel(nome) == false) {//Não existe
+    server.second->addChannel(nome);//Adiciona o canal pois tudo está nos conformes
+    return "Canal de texto " + nome + " criado";
   }
 
   return "Canal de texto " + nome + " já existe!";
 }
 
 string Sistema::enter_channel(int id, const string nome) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Existe tal servidor?
-    string nomeServidor = user.second->second.first;
-    auto server = this_server_exists(nomeServidor);
-    if(server.first == false){//Servidor não existe
-      return "Usuário não está visualizando nenhum servidor";
-    }
-
-    //Existe canal com esse nome?
-    if(server.second->findChannel(nome)) {//Existe
-      user.second->second.second = nome; //Atualiza a tabela de canal visualizado
-      return "Entrou no canal " + nome;
-    }
-
-  } else {
+  
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
+  }
+
+  //Existe tal servidor?
+  string nomeServidor = user.second->second.first;
+  auto server = this_server_exists(nomeServidor);
+  if(server.first == false){//Servidor não existe
+    return "Usuário não está visualizando nenhum servidor";
+  }
+
+  //Existe canal com esse nome?
+  if(server.second->findChannel(nome)) {//Existe
+    user.second->second.second = nome; //Atualiza a tabela de canal visualizado
+    return "Entrou no canal " + nome;
   }
 
   return "Canal de texto " + nome + " não existe!";
 }
 
 string Sistema::leave_channel(int id) {
-  //Existe alguém logado?
-  int x = usuariosLogados.size();
-
-  if(x > 0) {
-    //Usuário está logado?
-    auto user = is_user_logged(id);
-    if(user.first == false) {//Não tá logado
-      return "Usuário não logado";
-    }
-
-    //Existe tal servidor?
-    string nomeServidor = user.second->second.first;
-    auto server = this_server_exists(nomeServidor);
-    if(server.first == false){//Servidor não existe
-      return "Usuário não está visualizando nenhum servidor";
-    }
-
-    //Usuário está visualizando algum canal
-    if(user.second->second.second != "") {//Está visualizando um canal
-      user.second->second.second = "";
-      return "Saindo do canal";
-    }
-
-  } else {
+  
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
     return "Usuário não logado";
+  }
+
+  //Existe tal servidor?
+  string nomeServidor = user.second->second.first;
+  auto server = this_server_exists(nomeServidor);
+  if(server.first == false){//Servidor não existe
+    return "Usuário não está visualizando nenhum servidor";
+  }
+
+  //Usuário está visualizando algum canal
+  if(user.second->second.second != "") {//Está visualizando um canal
+    user.second->second.second = "";
+    return "Saindo do canal";
   }
 
   return "Usuário não está visualizando nenhum canal";
