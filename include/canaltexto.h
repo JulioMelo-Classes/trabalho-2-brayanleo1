@@ -2,6 +2,8 @@
 #define CANALTEXTO_H
 #include <iostream>
 #include <vector>
+#include <utility>
+#include <iterator>
 
 #include "mensagem.h"
 
@@ -29,6 +31,12 @@ class CanalTexto{
 				@param conteudo O conteúdo da mensagem a ser adicionáda
 		*/
 		void addMsg(int id, std::string conteudo);
+
+		/*! Retorna um pair de iterators apontando para a primeira e pós última posição do vetor de mensagens do canal de texto
+				@return Um pair de iterators apontando para a primeira e pós última posição do vetor de mensagens
+		*/
+		std::pair<std::vector<Mensagem>::iterator, std::vector<Mensagem>::iterator> getMsgIts();
+
 };
 
 #endif
