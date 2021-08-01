@@ -23,6 +23,12 @@ class CanalTexto{
 				@return Uma string que representa o nome do canal de texto
 		*/
 		std::string getNome();
+
+		/*! Adiciona uma mensagem ao vetor de mensagens do canal de texto
+				@param id O id do usuário que enviou a mensagem
+				@param conteudo O conteúdo da mensagem a ser adicionáda
+		*/
+		void addMsg(int id, std::string conteudo);
 };
 
 #endif
