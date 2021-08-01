@@ -474,7 +474,32 @@ string Sistema::send_message(int id, const string mensagem) {
 }
 
 string Sistema::list_messages(int id) {
-  return "list_messages NÃO IMPLEMENTADO";
+  //Usuário está logado?
+  auto user = is_user_logged(id);
+  if(user.first == false) {//Não tá logado
+    return "Usuário não logado";
+  }
+
+  //Existe tal servidor?
+  string nomeServidor = user.second->second.first;
+  auto server = this_server_exists(nomeServidor);
+  if(server.first == false){//Servidor não existe
+    return "Usuário não está visualizando nenhum servidor";
+  }
+
+  //Usuário está visualizando algum canal?
+  if(user.second->second.second == "") {//Não está visualizando um canal
+    return "Usuário não está visualizando nenhum canal";
+  }
+
+  //Existe alguma mensagem no canal?
+  auto channel = server.second->getThatChannel(user.second->second.second);
+  if(channel->getMsgIts().first != channel->getMsgIts().second){//Existe
+    auto msgs = server.second->printMsgsFromChannel(channel->getNome(), usuarios);
+    return msgs;
+  }
+
+  return "Sem mensagens para exibir";
 }
 
 
