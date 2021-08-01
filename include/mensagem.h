@@ -17,18 +17,13 @@ class Mensagem{
 	*/
 	void setDH(std::string dataHora_);
 
-	/*! Recupera a data e hora da mensagem
-			@return Uma string representando a data e hora da mensagem
-	*/
-	std::string getDH();
-
 	/*! Coloca o id do usuário que enviou a mensagem
 			@param id Int representando o id de quem enviou a mensagem
 	*/
 	void setEnv(int id);
 
 	/*! Recupera o id do usuário que enviou a mensagem
-			@return Um int que representa o id de quem enviou a mensagem
+			@return Int representando o id de quem enviou a mensagem
 	*/
 	int getEnv();
 
@@ -37,10 +32,10 @@ class Mensagem{
 	*/
 	void setContent(std::string conteudo_);
 
-	/*! Recupera o conteúdo da mensagem
-			@return Uma string que possui o conteúdo da mensagem
+	/*! Imprime data, hora e conteúdo da mensagem em um formato pré-definido
+			@return Uma string que possui data, hora e conteúdo da mensagem
 	*/
-	std::string getContent();
+	std::string printMsg();
 };
 
 #endif

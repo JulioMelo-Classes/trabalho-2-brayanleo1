@@ -8,10 +8,6 @@ void Mensagem::setDH(string dataHora_){
     dataHora = dataHora_;
 }
 
-string Mensagem::getDH(){
-    return dataHora;
-}
-
 void Mensagem::setEnv(int id){
     enviadaPor = id;
 }
@@ -24,6 +20,9 @@ void Mensagem::setContent(string conteudo_){
     conteudo = conteudo_;
 }
 
-string Mensagem::getContent(){
-    return conteudo;
+string Mensagem::printMsg(){
+    string msg;
+    msg.append(dataHora);
+    msg.append(conteudo);
+    return msg;
 }
