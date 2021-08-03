@@ -1,0 +1,45 @@
+create-user dragonlegend@hero.corp.com HeroPass Aranto Dragon Slayer
+create-user villanylegend@villain.corp.com VillainPass Picole Hero Slayer
+create-user npcboring@villager.corp.com NpcPass Pizza Cheese Slayer
+create-user fantasma@booo.com NuncaLogo Non Logor
+login dragonlegend@hero.corp.com HeroPass
+create-server 0 LegiaoDoHeroi
+login villanylegend@villain.corp.com VillainPass
+create-server 1 LegiaoDoVilao
+create-server 2 CasaDosNaoJogaveis
+login npcboring@villager.corp.com NpcPass
+create-server 2 CasaDosNaoJogaveis
+set-server-desc 0 LegiaoDoHeroi Um local para heróis se reunirem e treinarem novos herois
+set-server-desc 1 LegiaoDoVilao Um local para planejar coisas maléficas e ficar rindo
+set-server-desc 2 CasaDosNaoJogaveis Olá herói, eu não consigo encontrar a minha cadeira, pode procurar para mim?
+set-server-invite-code 0 LegiaoDoHeroi EspadaSagrada
+set-server-invite-code 1 LegiaoDoVilao Mwahahahaha
+enter-server 0 LegiaoDoHeroi
+enter-server 1 LegiaoDoVilao
+enter-server 2 CasaDosNaoJogaveis QualEraEssaSenha?
+list-channels 0
+create-channel 0 AtosHeroicos
+enter-channel 0 AtosHeroicos
+create-channel 1 AtosVilanescos
+enter-channel 1 AtosVilanescos
+create-channel 2 LocalDaMinhaChave
+create-channel 2 LocalDaMinhaChave
+enter-channel 2 LocalDaMinaChave
+enter-channel 2 LocalDaMinhaChave
+leave-channel 2 LocalDaMinaChave
+leave-channel 2
+list-channels 2
+enter-server 0 CasaDosNaoJogaveis
+create-channel 0 HistoriasHeroicas
+list-channels 0
+leave-server 0 CasaDosNaoJogaveis
+create-channel 0 HistoriasHeroicas
+list-channels 0
+enter-server 0 LegiaoDoHeroi
+create-channel 0 HistoriasHeroicas
+list-channels 0
+create-channel 3 CadeVcs
+list-channels 3
+enter-channel 3 CadeVcs
+leave-channel 3 CadeVcs
+quit

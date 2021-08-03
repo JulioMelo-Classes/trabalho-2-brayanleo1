@@ -1,0 +1,54 @@
+create-user dragonlegend@hero.corp.com HeroPass Aranto Dragon Slayer
+create-user villanylegend@villain.corp.com VillainPass Picole Hero Slayer
+create-user npcboring@villager.corp.com NpcPass Pizza Cheese Slayer
+create-user fantasma@booo.com NuncaLogo Non Logor
+login dragonlegend@hero.corp.com HeroPass
+create-server 0 LegiaoDoHeroi
+login villanylegend@villain.corp.com VillainPass
+create-server 1 LegiaoDoVilao
+create-server 1 LegiaoDoHeroi
+create-server 1 LegiaoDoHeroiRealVerdadeiro
+create-server 2 CasaDosNaoJogaveis
+login npcboring@villager.corp.com NpcPass
+create-server 2 CasaDosNaoJogaveis
+create-server 3 Cemiterio
+set-server-desc 0 LegiaoDoHeroi Um local para heróis se reunirem e treinarem novos herois
+set-server-desc 1 LegiaoDoVilao Um local para planejar coisas maléficas e ficar rindo
+set-server-desc 1 LegiaoDoHeroi Server Falso
+set-server-desc 1 LegiaoDoHeroiRealVerdadeiro ESSE É O REAL O OUTRO É UMA FARSA
+set-server-desc 2 CasaDosNaoJogavveis Olá herói, eu não consigo encontrar a minha cadeira, pode procurar para mim?
+set-server-desc 2 CasaDosNaoJogaveis Olá herói, eu não consigo encontrar a minha cadeira, pode procurar para mim?
+set-server-desc 3 Cemiterio Frio na espinha
+set-server-desc 3 CasaDosNaoJogaveis Fantasma dominando na área
+set-server-invite-code 0 LegiaoDoHeroi EspadaSagrada
+set-server-invite-code 1 LegiaoDoHeroi 123456789
+set-server-invite-code 1 LegiaoDoVilao Mwahahahaha
+set-server-invite-code 2 CasaDosNaoJogavveis Senha
+set-server-invite-code 2 CasaDosNaoJogaveis Senha
+set-server-invite-code 3 Cemiterio NãoVivo
+set-server-invite-code 3 CasaDosNaoJogaveis Dominando
+enter-server 0 LegiaoDoHeroi
+enter-server 1 LegiaoDoHeroi
+enter-server 1 LegiaoDoHeroi 123456789
+enter-server 1 LegiaoDoVilao
+enter-server 2 CasaDosNaoJogaveis QualEraEssaSenha?
+set-server-invite-code 2 CasaDosNaoJogaveis
+enter-server 2 CasaDosNaoJogaveis AgoraTaSemSenha
+enter-server 3 Cemiterio
+enter-server 3 CasaDosNaoJogaveis
+list-servers 0
+list-servers 3
+list-participants 0
+enter-server 0 CasaDosNaoJogaveis
+list-participants 0
+enter-server 0 LegiaoDoHeroi
+leave-server 0 CasaDosNaoJogaveis
+enter-server 0 LegiaoDoHeroiRealVerdadeiro
+remove-server 1 LegiaoDoHeroiRealVerdadeiro
+list-participants 2
+leave-server 2 LegiaoDoHeroi
+leave-server 2 CasaDosNaoJogaveis
+leave-server 2 CasaDosNaoJogaveis
+list-servers 2
+list-participants 0
+quit

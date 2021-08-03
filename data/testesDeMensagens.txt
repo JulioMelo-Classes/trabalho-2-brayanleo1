@@ -1,0 +1,43 @@
+create-user dragonlegend@hero.corp.com HeroPass Aranto Dragon Slayer
+create-user villanylegend@villain.corp.com VillainPass Picole Hero Slayer
+create-user npcboring@villager.corp.com NpcPass Pizza Cheese Slayer
+create-user fantasma@booo.com NuncaLogo Non Logor
+login dragonlegend@hero.corp.com HeroPass
+create-server 0 LegiaoDoHeroi
+login villanylegend@villain.corp.com VillainPass
+create-server 1 LegiaoDoVilao
+create-server 2 CasaDosNaoJogaveis
+login npcboring@villager.corp.com NpcPass
+create-server 2 CasaDosNaoJogaveis
+set-server-desc 0 LegiaoDoHeroi Um local para heróis se reunirem e treinarem novos herois
+set-server-desc 1 LegiaoDoVilao Um local para planejar coisas maléficas e ficar rindo
+set-server-desc 2 CasaDosNaoJogaveis Olá herói, eu não consigo encontrar a minha cadeira, pode procurar para mim?
+set-server-invite-code 0 LegiaoDoHeroi EspadaSagrada
+set-server-invite-code 1 LegiaoDoVilao Mwahahahaha
+enter-server 0 LegiaoDoHeroi
+enter-server 1 LegiaoDoVilao
+enter-server 2 CasaDosNaoJogaveis QualEraEssaSenha?
+list-channels 0
+create-channel 0 AtosHeroicos
+enter-channel 0 AtosHeroicos
+send-message 0 Pois é um dia eu matei um dragão, sou o cara mesmo
+send-message 0 Cara não tem ninguém aqui para eu me mostrar
+list-messages 0
+create-channel 1 AtosVilanescos
+enter-channel 1 AtosVilanescos
+send-message 1 Mwahahahaha meu plano maquiavélico está quase concluído
+list-messages 2
+create-channel 2 LocalDaMinhaChave
+enter-channel 2 LocalDaMinhaChave
+list-messages 2
+enter-server 0 CasaDosNaoJogaveis
+enter-channel 0 LocalDaMinhaChave
+send-message 2 Olá herói, eu não consigo encontrar a minha cadeira, pode procurar para mim?
+send-message 0 Pois é um dia eu matei um dragão, sou o cara mesmo
+send-message 2 Olá herói, eu não consigo encontrar a minha cadeira, pode procurar para mim?
+list-messages 0
+send-message 0 Tá bem alí ó, não tá vendo não? Mais importante, eu já matei um dragão seu campones
+send-message 2 Olá herói, eu não consigo encontrar a minha cadeira, pode procurar para mim?
+list-messages 0
+leave-server 0 CasaDosNaoJogaveis
+quit

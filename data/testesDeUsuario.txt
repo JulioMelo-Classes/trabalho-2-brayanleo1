@@ -1,0 +1,16 @@
+create-user dragonlegend@hero.corp.com HeroPass Aranto Dragon Slayer
+create-user dragonlegend@hero.corp.com FarsantePass Aranto Dragon Slayer
+create-user dragonllegend@hero.corp.com FarsantePass Aranto Dragon Slayer
+create-user villanylegend@villain.corp.com VillainPass Picole Hero Slayer
+create-user npcboring@villager.corp.com NpcPass Pizza Cheese Slayer
+login dragonlegend@hero.corp.com FarsantePass
+login dragonllegend@hero.corp.com FarsantePass
+login dragonlegend@hero.corp.com HeroPass
+login villanylegend@villain.corp.com VillainPass
+login npcboring@villager.corp.com NpcPass
+login npcboring@villager.corp.com NpcPass
+disconnect 3
+disconnect 2
+disconnect 2
+disconnect 0
+quit
