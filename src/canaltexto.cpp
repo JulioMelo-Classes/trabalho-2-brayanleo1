@@ -1,6 +1,7 @@
 #include "canaltexto.h"
 
-#include "time.h"
+#include <ctime>
+#include <string>
 
 using namespace std;
 
@@ -18,12 +19,15 @@ void CanalTexto::addMsg(int id, string conteudo){
     Mensagem m;
     m.setEnv(id);
     m.setContent(conteudo);
-    string dh;
-    dh.append("<");
-    dh.append(__DATE__);
-    dh.append(" - ");
-    dh.append(__TIME__);
-    dh.append(">");
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer,sizeof(buffer),"<%d/%m/%Y - %H:%M>: ",timeinfo);
+    std::string dh(buffer);
     m.setDH(dh);
 
     mensagens.push_back(m);
