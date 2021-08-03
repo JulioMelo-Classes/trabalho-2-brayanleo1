@@ -1,16 +1,4 @@
-# Base para a atividade 02 de LP1
-
-Use esse esqueleto de classes para iniciar a terceira atividade.
-
-Existe um executor que faz a interpretação dos comandos e executa o método correto do sistema.
-
 ## Para compilar
-
-Com makefiles:
-```console
-mkdir build
-make
-```
 
 Com cmake:
 ```console
@@ -20,15 +8,29 @@ cmake ..
 cmake --build .
 ```
 
-Escolha uma das duas formas de build e ignore a outra.
-
 ## Para executar
-Você pode rodar o sistema e em logo depois digitar os comandos seguidos de ENTER
+Você pode rodar o sistema e em logo depois digitar os comandos seguidos de ENTER dentro da pasta build no linux:
 ```console
-./concordo
+./Debug/concordo
 ```
 
-Ou pode criar um arquivo de texto com uma lista de comandos (um por linha) e executar o sistema redirecionando esse arquivo como entrada padrão:
+Ou dessa forma no windows:
 ```console
-./concordo < script_comandos.txt
+.\Debug\concordo.exe
 ```
+
+## Para executar com os testes
+
+Ou pode executar o sistema redirecionando algum arquivo como entrada padrão no linux:
+```console
+./Debug/concordo < ../data/testesDeUsuario.txt
+```
+
+Ou dessa forma no windows:
+```console
+Get-Content ..\data\testesDeMensagens.txt | .\Debug\concordo.exe
+```
+
+## Limitações ou funcionalidades não implementadas no programa
+
+O programa não grava os objetos criados durante a sessão, ou seja, assim que a execução do programa parar, tudo feito naquela sessão será perdido.
