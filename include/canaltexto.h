@@ -7,6 +7,9 @@
 
 #include "mensagem.h"
 
+/*
+ok
+*/
 class CanalTexto{
 	private:
 		std::string nome; //<! O nome do canal
@@ -35,7 +38,7 @@ class CanalTexto{
 		/*! Retorna um pair de iterators apontando para a primeira e pós última posição do vetor de mensagens do canal de texto
 				@return Um pair de iterators apontando para a primeira e pós última posição do vetor de mensagens
 		*/
-		std::pair<std::vector<Mensagem>::iterator, std::vector<Mensagem>::iterator> getMsgIts();
+		std::pair<std::vector<Mensagem>::iterator, std::vector<Mensagem>::iterator> getMsgIts(); //não é uma prática comum retornar iterators!
 
 };
 

@@ -228,6 +228,9 @@ string Sistema::remove_server(int id, const string nome) {
   return "Você não é o dono do servidor " + nome;
 }
 
+/*
+A2.7 0,5
+*/
 string Sistema::enter_server(int id, const string nome, const string codigo) {
   
   //Usuário está logado?
@@ -253,7 +256,10 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
       user.second->second = status; //Atualiza as informações
       server.second->addUser(user.second->first); //Adiciona o id do usuário a lista de participantes
         return "Entrou no servidor com sucesso";
-      } else {//Não é dono
+      /*o else logo aqui abaixo contem um erro de identação que é bem ruim vou considerar 50% desta questão só por isso
+      esse else pertence ao if da linha 252 logo deveria estar no mesmo nível dele!
+      */
+      } else {//Não é dono 
         //Código de convite necessário?
         if(server.second->getCodigo() != "") {//É necessário
           //Há código de convite válido?
@@ -294,6 +300,9 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
   return "Código de convite inválido";
 }
 
+/*
+A2.8 ok
+*/
 string Sistema::leave_server(int id, const string nome) {
 
   //Usuário está logado?
@@ -336,6 +345,9 @@ string Sistema::leave_server(int id, const string nome) {
   return "Você não está em qualquer servidor";
 }
 
+/*
+A2.9 ok
+*/
 string Sistema::list_participants(int id) {
 
   //Usuário está logado?
@@ -353,7 +365,9 @@ string Sistema::list_participants(int id) {
 
   return "Usuário não está visualizando nenhum servidor";
 }
-
+/*
+B1.1 ok
+*/
 string Sistema::list_channels(int id) {
   
   //Usuário está logado?
@@ -372,6 +386,11 @@ string Sistema::list_channels(int id) {
   return "Usuário não está visualizando nenhum servidor";
 }
 
+/*
+B1.2 ok
+Voce resolveu bloquear a criação de canais por pessoas que não sejam o dono, embora isso não estivesse na especificação
+não irei tirar pontos, no entanto.
+*/
 string Sistema::create_channel(int id, const string nome) {
   
   //Usuário está logado?
@@ -401,6 +420,9 @@ string Sistema::create_channel(int id, const string nome) {
   return "Canal de texto " + nome + " já existe!";
 }
 
+/*
+B1.3 ok
+*/
 string Sistema::enter_channel(int id, const string nome) {
   
   //Usuário está logado?
@@ -425,6 +447,9 @@ string Sistema::enter_channel(int id, const string nome) {
   return "Canal de texto " + nome + " não existe!";
 }
 
+/*
+B1.4 ok
+*/
 string Sistema::leave_channel(int id) {
   
   //Usuário está logado?
@@ -449,6 +474,9 @@ string Sistema::leave_channel(int id) {
   return "Usuário não está visualizando nenhum canal";
 }
 
+/*
+B2.1 ok
+*/
 string Sistema::send_message(int id, const string mensagem) {
   //Usuário está logado?
   auto user = is_user_logged(id);
@@ -472,7 +500,9 @@ string Sistema::send_message(int id, const string mensagem) {
 
   return "Usuário não está visualizando nenhum canal";
 }
-
+/*
+B2.2 ok
+*/
 string Sistema::list_messages(int id) {
   //Usuário está logado?
   auto user = is_user_logged(id);

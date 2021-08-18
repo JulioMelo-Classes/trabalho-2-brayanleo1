@@ -2,6 +2,9 @@
 #define USUARIO_H
 #include <iostream>
 
+/*
+ok
+*/
 class Usuario{
 	private:
 		int id; //<! Um identificador único para o usuário

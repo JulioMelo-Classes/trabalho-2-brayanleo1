@@ -20,7 +20,7 @@ Ou dessa forma no windows:
 ```
 
 ## Para executar com os testes
-
+<!--não foram documentados o que cada teste faz, mas é possível inferir pelos nomes dos arquivos então irei considerar-->
 Ou pode executar o sistema redirecionando algum arquivo como entrada padrão no linux:
 ```console
 ./Debug/concordo < ../data/testesDeUsuario.txt
